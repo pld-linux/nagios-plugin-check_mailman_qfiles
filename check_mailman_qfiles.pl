@@ -55,7 +55,7 @@ foreach my $qdir (qw(data)) {
 }
 
 if (! $problem_status) {
-	print "all normal\n";
+	print "OK: all normal\n";
 	exit 0;
 }
 
