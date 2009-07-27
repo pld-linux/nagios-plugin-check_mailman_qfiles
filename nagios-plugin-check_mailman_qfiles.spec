@@ -3,7 +3,7 @@
 Summary:	Nagios plugin to check Mailman qfiles
 Name:		nagios-plugin-%{plugin}
 Version:	0.1
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Networking
 # Source0Download: http://exchange.nagios.org/components/com_mtree/attachment.php?link_id=1347&cf_id=24
