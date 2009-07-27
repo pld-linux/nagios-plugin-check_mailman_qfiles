@@ -30,7 +30,7 @@ unprocessed items and report on freshness.
 cat > nagios.cfg <<'EOF'
 define command {
 	command_name    %{plugin}
-	command_line    %{plugindir}/%{plugin} -H $HOSTADDRESS$ -w 5 -c 20
+	command_line    %{plugindir}/%{plugin} -w 5 -c 20
 }
 EOF
 
