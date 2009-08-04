@@ -12,7 +12,7 @@ use warnings;
 use File::Find::Rule;
 use Getopt::Long;
 
-my $qfiles_base = '/var/lib/mailman';
+my $qfiles_base = '/var/spool/mailman';
 my %opts = (
 	warning => 5,   # 5 minutes
 	critical => 20, # 20 minutes
@@ -29,7 +29,7 @@ $opts{critical} *= 60;
 my %problems;
 my $problem_status;
 
-foreach my $qdir (qw(data)) {
+foreach my $qdir (qw(archive bounces commands in news out retry)) {
 	# Get all the 'pickle' files in the queue directory
 	my @files = File::Find::Rule->file->name('*.pck')->in("$qfiles_base/$qdir");
 	next unless @files;
