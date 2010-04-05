@@ -19,11 +19,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		plugindir	%{_prefix}/lib/nagios/plugins
 
 %description
-Checks age and number of mailman qfiles to keep the mailing lists flowing and
-responsive.
+Checks age and number of mailman qfiles to keep the mailing lists
+flowing and responsive.
 
-Simple Perl script to check the various Mailman qfiles directories for old,
-unprocessed items and report on freshness.
+Simple Perl script to check the various Mailman qfiles directories for
+old, unprocessed items and report on freshness.
 
 %prep
 %setup -qcT
