@@ -3,14 +3,14 @@
 Summary:	Nagios plugin to check Mailman qfiles
 Name:		nagios-plugin-%{plugin}
 Version:	0.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking
 # Source0Download: http://exchange.nagios.org/components/com_mtree/attachment.php?link_id=1347&cf_id=24
 Source0:	%{plugin}.pl
 URL:		http://exchange.nagios.org/directory/Plugins/Email-and-Groupware/Mailman/check_mailman_qfiles/details
 BuildRequires:	rpm-perlprov >= 4.1-13
-Requires:	nagios-core
+Requires:	nagios-common
 Requires:	nagios-plugins-libs
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
