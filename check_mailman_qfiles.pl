@@ -13,6 +13,7 @@ use File::Find::Rule;
 use Getopt::Long;
 
 my $qfiles_base = '/var/spool/mailman';
+my $qfiles_data = '/var/lib/mailman/data';
 my %opts = (
 	warning => 5,   # 5 minutes
 	critical => 20, # 20 minutes
@@ -53,6 +54,29 @@ foreach my $qdir (qw(archive bounces commands in news out retry)) {
 		$problems{$qdir}[1] = sprintf "%d tasks, oldest %s", int(@files), describe_diff($diff);
 	}
 }
+
+# check moderation queue
+my %modqueue;
+foreach (File::Find::Rule->file->name('heldmsg-*.pck')->in($qfiles_data)) {
+	if (my($list, $id) = /heldmsg-(.+)-(\d+)\.pck/) {
+		$modqueue{$list}++;
+	}
+}
+while (my($list, $count) = each %modqueue) {
+	if ($count > $opts{critical}) {
+		$problems{$list} = [ 'CRITICAL' ];
+		$problem_status = 'CRITICAL';
+	}
+	elsif ($count > $opts{warning}) {
+		$problems{$list} = [ 'WARNING' ];
+		$problem_status = 'WARNING' if ! $problem_status;;
+	}
+
+	if ($problems{$list}) {
+		$problems{$list}[1] = sprintf("%d moderation tasks", $count);
+	}
+}
+
 
 if (! $problem_status) {
 	print "OK: all normal\n";

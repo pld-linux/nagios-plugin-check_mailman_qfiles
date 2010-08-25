@@ -8,7 +8,6 @@ License:	GPL
 Group:		Networking
 # Source0Download: http://exchange.nagios.org/components/com_mtree/attachment.php?link_id=1347&cf_id=24
 Source0:	%{plugin}.pl
-Patch0:	check-modqueue.patch
 URL:		http://exchange.nagios.org/directory/Plugins/Email-and-Groupware/Mailman/check_mailman_qfiles/details
 BuildRequires:	rpm-perlprov >= 4.1-13
 Requires:	nagios-common
@@ -28,9 +27,6 @@ old, unprocessed items and report on freshness.
 
 %prep
 %setup -qcT
-install -p %{SOURCE0} .
-%patch0 -p0
-
 cat > nagios.cfg <<'EOF'
 define command {
 	command_name    %{plugin}
@@ -41,7 +37,7 @@ EOF
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{plugindir}}
-install -p %{plugin}.pl $RPM_BUILD_ROOT%{plugindir}/%{plugin}
+install -p %{SOURCE0} $RPM_BUILD_ROOT%{plugindir}/%{plugin}
 cp -a nagios.cfg $RPM_BUILD_ROOT%{_sysconfdir}/%{plugin}.cfg
 
 %clean
