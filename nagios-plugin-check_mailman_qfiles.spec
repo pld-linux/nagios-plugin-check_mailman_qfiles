@@ -1,5 +1,4 @@
 %define		plugin	check_mailman_qfiles
-%include	/usr/lib/rpm/macros.perl
 Summary:	Nagios plugin to check Mailman qfiles
 Name:		nagios-plugin-%{plugin}
 Version:	0.1
